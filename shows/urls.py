@@ -4,7 +4,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from shows.views import (
     SectionListAPIView, EventListAPIView,
     PlaceListAPIView, ChairListAPIView,
-    ChairListEventAPIView, 
+    ChairListEventAPIView, EventCharacteristicAPIView
 )
 
 urlpatterns = format_suffix_patterns([
@@ -32,5 +32,10 @@ urlpatterns = format_suffix_patterns([
         'chair-event/<int:pk>',
         ChairListEventAPIView.as_view(),
         name='chair-event'
+    ),
+    path(
+        'event-characteristic/<int:pk>',
+        EventCharacteristicAPIView.as_view(),
+        name='event-characteristic'
     ),
 ])

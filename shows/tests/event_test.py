@@ -28,3 +28,20 @@ class EventTest(APITestCase):
         set(['pk', 'place', 'name', 'description', 'date',
             'start_time', 'end_time', 'status'])
         )
+
+    def test_get_event_characteristic(self):
+        """
+        Get the characteristic from a event
+        """
+        data = {
+            'pk': self.event.pk,
+        }
+        response = self.client.get(
+            reverse('event-characteristic', kwargs=data),
+            format='json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(list(response.json()[0].keys()),
+        ['event_name', 'event_description', 'date', 'start_time',
+            'place_address', 'place_capacity'])

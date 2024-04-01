@@ -1,4 +1,4 @@
 from shows.serializers.section_serializer import SectionSerializer
-from shows.serializers.event_serializer import EventSerializer
+from shows.serializers.event_serializer import EventSerializer, EventCharacteristicSerializer
 from shows.serializers.place_serializer import PlaceSerializer
 from shows.serializers.chair_serializer import ChairSerializer, SectionChairSerializer
