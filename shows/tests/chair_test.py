@@ -24,7 +24,7 @@ class ChairTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(list(response.json()[0].keys()),
-        ["pk", "name", "section", "aviable"]
+        ["pk", "name", "section", "aviable", 'buyer_name', 'buyer_dni']
         )
 
     def test_get_chair_event_ok(self):
@@ -72,3 +72,23 @@ class ChairTest(APITestCase):
         ['chair_id', 'chair_name', 'aviable',
          'section_name', 'price']
         )
+    
+    def test_buy_chair(self):
+        """
+        Buy a chair
+        """
+        data = {
+            'pk': self.chair.pk,
+            'chair_name': self.chair.name,
+            'buyer_name': 'John Smith',
+            'buyer_dni': '161803390'
+        }
+        response = self.client.post(
+            reverse('purchase-chair', args=(self.chair.pk,)),
+            data=data,
+            format='json'
+        )
+        buyed_chair = Chair.objects.get(pk=self.chair.pk)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(buyed_chair.buyer_dni, '161803390')
+        self.assertEqual(buyed_chair.aviable, False)

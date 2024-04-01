@@ -8,6 +8,7 @@ class ChairSerializer(serializers.ModelSerializer):
         model = Chair
         fields = (
             'pk', 'name', 'section', 'aviable',
+             'buyer_name', 'buyer_dni',
             )
 
 class SectionChairSerializer(serializers.ModelSerializer):
