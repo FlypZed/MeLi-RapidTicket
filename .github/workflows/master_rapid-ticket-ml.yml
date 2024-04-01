@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'rapid-ticket-ml'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_59753E0752A34684BF9CAC604F7E3C33 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_41B2A5B4B81140538C0ACCBBCC54759C }}
