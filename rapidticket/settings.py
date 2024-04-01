@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s%ge_6zwegnce+tk^oyhs8n@dn+2p%-1@flpe$qk59^=v^xr72
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rapid-ticket-ml.azurewebsites.net']
 
 
 # Application definition
