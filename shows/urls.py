@@ -2,30 +2,30 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from shows.views import (
-    SectionListAPIView, EventListAPIView,
-    PlaceListAPIView, ChairListAPIView,
+    SectionListCreateAPIView, EventListCreateAPIView,
+    PlaceListCreateAPIView, ChairListCreateAPIView,
     ChairListEventAPIView, EventCharacteristicAPIView
 )
 
 urlpatterns = format_suffix_patterns([
     path(
         'section/',
-        SectionListAPIView.as_view(),
+        SectionListCreateAPIView.as_view(),
         name='section'
     ),
     path(
         'event/',
-        EventListAPIView.as_view(),
+        EventListCreateAPIView.as_view(),
         name='event'
     ),
     path(
         'place/',
-        PlaceListAPIView.as_view(),
+        PlaceListCreateAPIView.as_view(),
         name='place'
     ),
     path(
         'chair/',
-        ChairListAPIView.as_view(),
+        ChairListCreateAPIView.as_view(),
         name='chair'
     ),
     path(

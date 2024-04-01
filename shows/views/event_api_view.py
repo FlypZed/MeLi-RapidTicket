@@ -6,7 +6,7 @@ from shows.serializers import EventSerializer, EventCharacteristicSerializer
 from shows.models import Event
 
 
-class EventListAPIView(generics.ListAPIView):
+class EventListCreateAPIView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = [

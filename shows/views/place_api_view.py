@@ -5,7 +5,7 @@ from shows.serializers import PlaceSerializer
 from shows.models import Place
 
 
-class PlaceListAPIView(generics.ListAPIView):
+class PlaceListCreateAPIView(generics.ListCreateAPIView):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
     filter_backends = [
