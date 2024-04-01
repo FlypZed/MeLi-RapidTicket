@@ -5,7 +5,7 @@ from shows.serializers import SectionSerializer
 from shows.models import Section
 
 
-class SectionListAPIView(generics.ListAPIView):
+class SectionListCreateAPIView(generics.ListCreateAPIView):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
     filter_backends = [

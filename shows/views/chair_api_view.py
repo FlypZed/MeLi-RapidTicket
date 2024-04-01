@@ -7,7 +7,7 @@ from shows.serializers import ChairSerializer, SectionChairSerializer
 from shows.models import Chair
 
 
-class ChairListAPIView(generics.ListAPIView):
+class ChairListCreateAPIView(generics.ListCreateAPIView):
     queryset = Chair.objects.all()
     serializer_class = ChairSerializer
     filter_backends = [
