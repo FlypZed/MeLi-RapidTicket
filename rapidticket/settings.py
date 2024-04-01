@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['rapid-ticket-ml.azurewebsites.net', '*']
 
 
 # Application definition
-
+# Need the rest_framwork, django_filters and shows for deploy
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
