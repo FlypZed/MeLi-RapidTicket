@@ -4,6 +4,7 @@ from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+import json
 
 from shows.serializers import ChairSerializer, SectionChairSerializer
 from shows.models import Chair
@@ -25,10 +26,37 @@ class ChairListEventAPIView(generics.ListAPIView):
             Q(section__place__event__pk=pk) &
             Q(aviable=True)
             )
+        if queryset.exists():  # Si hay datos en la base de datos
+            serializer = self.serializer_class(queryset, many=True)
+            return Response(serializer.data)
+        else:  # Si no hay datos en la base de datos, carga desde el archivo JSON
+            data_from_json = self.load_data_from_json()
+            return Response(data_from_json)
 
-        serializer = self.serializer_class(queryset, many=True)
-        
-        return Response(serializer.data)
+    def load_data_from_json(self):
+        try:
+            # Abre y carga el archivo JSON
+            with open('shows.json', 'r',  encoding='utf-16') as json_file:
+                data = json.load(json_file)
+                available_seats = []
+                for item in data:
+                    if item["model"] == "shows.event" and item["pk"] == self.kwargs['pk']:
+                        event_place_pk = item["fields"]["place"]
+                        break
+                
+                for item in data:
+                    if item["model"] == "shows.section" and item["fields"]["place"] == event_place_pk:
+                        section_pk = item["pk"]
+                
+                for item in data:
+                    if item["model"] == "shows.chair" and item["fields"]["aviable"] == True and item["fields"]["section"] == section_pk:
+                        available_seats.append(item["fields"]["name"])
+
+                return available_seats
+                # Devolver un mensaje de error si no se encuentra el registro
+                return {"error": "No se encontraron datos para la pk especificada en el archivo JSON"}
+        except Exception as e:
+            return {"error": str(e)}
 
 class PurchaseChairAPIView(APIView):
     def post(self, request, *args, **kwargs):
