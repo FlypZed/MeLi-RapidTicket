@@ -54,6 +54,16 @@ Para la ejecucion de pruebas unitarias se creo un archivo independiente para cad
 1. Actualice y mantenga las pruebas a medida que se realizan cambios en el código base.
 2. Asegúrese de que las pruebas continúen siendo relevantes y proporcionen una cobertura adecuada para todas las funcionalidades importantes de la aplicación.
 
+### Aclaracion acerca de pruebas en rapid-ticket-ml.azurewebsites.net
+
+Al desplegar una aplicación en un entorno de producción, puede resultar desafiante ejecutar pruebas de forma efectiva debido a limitaciones en el acceso a la base de datos y el riesgo de afectar el funcionamiento en vivo de la aplicación. Para abordar esto, se opto por recurrir a técnicas que utilizan datos estáticos para simular el comportamiento de la base de datos durante las pruebas.
+
+En este enfoque común se utilizo un archivo JSON para almacenar datos de prueba que pueden ser cargados en la aplicación durante la ejecución de las pruebas.
+
+Sin embargo, es importante tener en cuenta algunas limitaciones:
+
+- **Limitación de datos**: Los datos en el archivo JSON son estáticos y limitados en comparación con una base de datos completa, lo que puede limitar la exhaustividad de las pruebas.
+
 ## Recursos adicionales
 
 - [Documentación oficial de Django](https://docs.djangoproject.com/)
