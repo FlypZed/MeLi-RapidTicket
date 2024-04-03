@@ -20,7 +20,7 @@ class PlaceTest(APITestCase):
             format='json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data), 3)
         self.assertEqual(response.json()[0].keys(),
         set(['pk', 'name', 'description', 
             'capacity', 'address'])
